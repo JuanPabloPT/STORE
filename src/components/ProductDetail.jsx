@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
 import { ProductService } from '../services/ProductService';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams} from 'react-router-dom';
 
 export function ProductDetail() {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
     const productService = new ProductService();
-    const navigate = useNavigate();
 
     useEffect(() => {
         async function fetchProduct() {
@@ -17,7 +16,7 @@ export function ProductDetail() {
         }
 
         fetchProduct();
-    }, [id]);
+    }, [id, productService]);
 
     if (loading) {
         return (
